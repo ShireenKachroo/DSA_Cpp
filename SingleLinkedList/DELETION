@@ -1,0 +1,92 @@
+//1. DELETION OF HEAD
+Node* deleteHead(Node* head)-------->T.C:O(1); S.C:O(1)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    Node *temp = head;
+    head = head->next;
+    temp->next = nullptr;
+    delete temp;
+    return head;
+}
+
+//2. DELETION OF TAIL
+Node* deleteTail(Node *head)---------->T.C:O(N); S.C:O(1)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    Node *temp = head;
+    while(temp->next->next != NULL)
+    {
+        temp = temp->next;
+    }
+    //temp->next->next == null
+    Node *nodeToDel = temp->next;
+    temp->next = nullptr;
+    delete nodeToDel;
+    return head;
+}
+
+//3. DELETION OF A GIVEN POSITION
+Node* deleteAtPos(Node* head, int pos)-------------->T.C: O(N); S.C: O(1)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    //delete head
+    if(pos == 1)
+    {
+        return deleteHead(head);
+    }
+    Node *temp = head;
+    int cnt = 0;
+    while(temp != NULL)
+    {
+        cnt++;
+        if(cnt == pos-1)
+        {
+            Node *nodeToDel = temp->next;
+            temp->next = nodeToDel->next;
+            nodeToDel->next = nullptr;
+            delete nodeToDel;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
+//4. DELETION BASED ON VALUE GIVEN
+Node *deleteVal(Node* head, int val)----------->T.C: O(N); S.C: O(1)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    if(val == head->data)  return deleteHead(head);  //delete the head
+    Node* temp = head;
+    Node* prev = nullptr;
+    while(temp != NULL)
+    {
+        if(temp->data == val)
+        {
+            Node* nodeToDel = temp;
+            prev->next = temp->next;
+            temp->next = nullptr;
+            delete nodeToDel;
+            break;
+        }
+        prev  = temp;
+        temp = temp->next;
+    }
+    return head;
+}
