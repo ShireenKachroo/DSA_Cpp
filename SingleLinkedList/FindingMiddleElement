@@ -1,0 +1,34 @@
+//FINDING MIDDLE OF A SINGLE LINKED LIST
+
+/* 1. BRUTE FORCE APPROACH--->T.C: O(2N) S.C: O(1) */
+int findMiddle(Node* head)
+{
+    Node* temp = head;
+    //finding the length of LL
+    int len = 0;
+    while(temp != NULL){
+        len++;
+        temp = temp->next;
+    }
+    temp = head;
+    int mid = (len/2);
+    int cnt = 0;
+    while(temp != NULL && cnt != mid)
+    {
+        cnt++;
+        temp = temp->next;
+    }
+    return temp->data;
+  }
+
+  /*2. OPTIMISATION------->TORTOISE HARE APPROACH ---------> T.C: O(N/2) S.C: O(1) */
+  int findMiddle2(Node* head){
+   Node* slow = head;
+   Node* fast = head;
+   while(fast != NULL && fast->next != NULL)
+   {
+        slow = slow->next;  //moving slow by one step
+        fast = fast->next->next;    //moving fast by 2 steps
+   }
+    return slow->data;
+}
