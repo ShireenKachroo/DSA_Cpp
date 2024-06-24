@@ -1,0 +1,31 @@
+//REVERSING A LL
+
+/* BRUTE FORCE--------->T.C: O(N); S.C:O(1) */
+Node* reverse(Node* head)
+{
+    if(head == NULL || head->next == NULL) return head;
+    //CHANGING LINKS ------>T.C: O(N); S.C: O(1)
+    Node* back = nullptr;
+    Node* front = nullptr;
+    Node* temp = head;
+    while(temp != NULL)
+    {
+        front = temp->next;
+        temp->next = back;
+        back = temp;
+        temp = front;
+    }
+    return back;    //back now points to the head of the reversed list
+  }
+
+   /* USING RECURSION------>T.C: O(N); S.C:O(N)=recursive stack space*/
+
+  Node* reverse(Node* head)
+  {
+   if(head == NULL || head->next == NULL) return head;     //base case
+   Node* newHead = reverse(head->next);
+   Node* front = head->next;
+   front->next = head;
+   head->next = nullptr;
+   return newHead;
+}
