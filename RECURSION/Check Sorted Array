@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+bool checkSorted(int arr[], int n)
+{
+    if(n == 0 ) return true; //empty array--->sorted
+    if(n == 1) return true; //single ele--->sorted
+    if(arr[0] < arr[1]) return true;
+    checkSorted(arr+1,n);
+    return false;
+}
+
+int main() {
+    int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    if(checkSorted(arr,n)) cout<<"SORTED ARRAY"<<endl;
+    else cout<<"NOT SORTED ARRAY"<<endl;
+    return 0;
+}
