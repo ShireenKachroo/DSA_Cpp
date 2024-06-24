@@ -1,0 +1,28 @@
+class Node
+{
+    public:
+    int data;
+    Node *next;
+    Node(int data1)
+    {
+        data = data1;
+        next = nullptr;
+    }
+    Node(int data1, Node* next1)
+    {
+        data = data1;
+        next = next1;
+    }
+};
+
+//SEARCHING IN A LL
+bool isPresent(Node* head, int key)-------------->T.C:O(N); S.C = O(1);
+{
+    Node* temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == key) return true;
+        temp = temp->next;
+    }
+    return false;
+}
