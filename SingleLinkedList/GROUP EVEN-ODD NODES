@@ -1,0 +1,17 @@
+//GROUPING EVEN AND ODD NODES TOGETHER
+Node* grpEvenOdd(Node* head)
+{
+    Node* evenHead = head->next;
+    Node* odd = head;
+    Node* even = head->next;
+    Node* temp = head;
+    while(even != NULL && even->next != NULL)
+    {
+        odd->next = odd->next->next;
+        even->next = even->next->next;
+        odd = odd->next;
+        even = even->next;
+    }
+    odd->next = evenHead;
+    return head;
+}
