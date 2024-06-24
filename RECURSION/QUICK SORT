@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+int findPivot(int arr[], int s,int e)
+{
+    int pivot = arr[s];
+    int i=s, j=e;
+    while(i<j)
+    {
+        while(arr[i] <= pivot && i <= e-1)  i++;
+        while(arr[j] > pivot && j >= s+1)  j--;
+        if(i<j)
+        {
+            //swap them
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    //swap arr[s] with last val of j
+    int temp = arr[s];
+    arr[s] = arr[j];
+    arr[j] = temp;
+    //return pivot index
+    return j;
+}
+void quickSort(int arr[], int s, int e)
+{
+    if(s<e)
+    {
+        int partitionIndex = findPivot(arr,s,e);
+        //left part
+        quickSort(arr,0,partitionIndex-1);
+        //right part
+       quickSort(arr,partitionIndex+1,e);
+    }
+    return;
+}
+int main()
+{
+    int arr[8] = {4,6,2,5,7,9,1,3};
+    int n = 8;
+    quickSort(arr,0,n-1);
+    for(int i=0;i<8;i++)
+    {
+        cout<<arr[i]<<"    ";
+    }
+    return 0;
+}
