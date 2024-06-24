@@ -1,0 +1,71 @@
+#incude<iostream>
+usingnamespace std;
+void merge(int arr[], int s, int mid, int e)
+{
+    int len1 = mid - s + 1;
+    int len2 = e - mid;
+    int *first = new int[len1];
+    int *second = new int[len2];
+    // Copy elements to temporary arrays
+    for (int i = 0; i < len1; i++)   first[i] = arr[s + i];
+    for (int j = 0; j < len2; j++)   second[j] = arr[mid + 1 + j];
+    // Merge the two arrays
+    int i = 0, j = 0, k = s;
+    while (i < len1 && j < len2)
+    {
+        if (first[i] <= second[j])
+        {
+            arr[k] = first[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = second[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < len1)
+    {
+        arr[k] = first[i];
+        i++;
+        k++;
+    }
+    while (j < len2)
+    {
+        arr[k] = second[j];
+        j++;
+        k++;
+    }
+
+    // Free dynamically allocated memory
+    delete[] first;
+    delete[] second;
+}
+void mergeSort(int arr[],int s, int e)
+{
+    //BASE CASE
+    if(s>=e)
+    {
+        return;
+    }
+    //FIND MID
+    int mid = s+(e-s)/2;
+    //SORT LEFT PART
+    mergeSort(arr,s,mid);
+    //SORT RIGHT PART
+    mergeSort(arr,mid+1,e);
+    //MERGE BOTH SORTED PARTS
+    merge(arr,s,mid,e);
+}
+int main()
+{
+    int arr[5] = {1,50,76,3,9};
+    int n = 5;
+    mergeSort(arr,0,n-1);
+    for(int i=0;i<n;i++)
+    {
+        cout<<arr[i]<<"    ";
+    }
+    return 0;
+}
