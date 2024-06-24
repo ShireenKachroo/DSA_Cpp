@@ -1,0 +1,33 @@
+//REMOVE Nth NODE FROM THE END OF LL
+
+Node* removeNthFromEnd(Node* head, int pos)
+{
+    /* BRUTE FORCE -----------> T.C:O(2N)  S.C:O(1); */
+    if(head == NULL) return NULL;
+    Node* temp = head;
+    //finding the len of LL
+    int len = 0;
+    while(temp != NULL)
+    {
+        len++;
+        temp = temp->next;
+    }
+    if(pos == len) return deleteHead(head);     //remove the head;
+    int traverseTill = len - pos;
+    len = 0;
+    temp = head;
+    while(temp != NULL)
+    {
+        len++;
+        if(len == traverseTill)
+        {
+            Node* nodeToDel = temp->next;
+            temp->next = temp->next->next;
+            nodeToDel->next = nullptr;
+            delete nodeToDel;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
