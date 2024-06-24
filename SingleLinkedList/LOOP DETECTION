@@ -1,0 +1,33 @@
+//DETECTING A LOOP/ CYCLE IN A LL
+
+/* BRUTE FORCE--->USE A MAP-------->T.C: O(N); S.C:O(N) */
+bool detectLoop(Node* head)
+{
+    map<Node*, bool> mpp;
+    Node* temp = head;
+    while (temp != NULL) {
+        // If we find a node that is already in the map, there is a loop
+        if (mpp.find(temp) != mpp.end()) {
+            return true;
+        }
+        // Mark the node as visited
+        mpp[temp] = true;
+        temp = temp->next;
+    }
+    return false;
+}
+
+/* OPTIMISATION - TORTOISE HARE APPROACH ----->T.C: O(N); S.C:O(1) */
+bool detectLoop(Node* head)
+{
+    if(head == NULL || head->next == NULL) return false;
+    Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast) return true;
+    }
+    return false;
+}
