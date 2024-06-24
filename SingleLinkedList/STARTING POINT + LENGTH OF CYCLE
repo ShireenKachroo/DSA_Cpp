@@ -1,0 +1,49 @@
+// FINDING THE STARTING POINT OF CYCLE IN A LIST----->T.C: O(N); S.C:O(1)
+
+Node* detectStart(Node* head)
+{
+    //first detect a loop
+    Node* slow = head;
+    Node* fast = head;
+    while(fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast)
+        {
+            slow = head;
+            while(slow != fast)
+            {
+                slow = slow->next;
+                fast = fast->next;
+            }
+            return slow;    //starting point
+        }
+    }
+    return NULL;
+}
+
+//LENGTH OF A LOOP IN LL----->T.C: O(N); S.C:O(1)
+int loopLen(Node* head)
+{
+    Node* slow = head;
+    Node* fast = head;
+    int cnt = 0;
+    while(fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast)
+        {
+            cnt = 1;
+            slow = slow->next;
+            while(slow != fast)
+            {
+                cnt++;
+                slow = slow->next;
+            }
+            return cnt;
+        }
+    }
+    return 0;
+}
