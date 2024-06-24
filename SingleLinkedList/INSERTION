@@ -1,0 +1,63 @@
+//1. INSERTING A NEW HEAD
+Node *insertHead(Node *head, int val)---------------->T.C: O(1); S.C: O(1)
+{
+   Node *newNode = new Node(val);
+   newNode->next  = head;
+   return newNode;
+}
+
+//2. INSERTING A TAIL
+Node* insertTail(Node* head, int val)------->T.C: O(N); S.C: O(1)
+{
+    if(head == NULL) return new Node(val);
+    Node *temp = head;
+    while(temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    Node *newNode = new Node(val);
+    temp->next = newNode;
+    newNode->next = nullptr;
+    return head;
+}
+
+//3. INSERTING AT Kth POSITION
+Node *insertAtKthPos(Node *head, int pos, int val)-------->T.C: O(N); S.C: O(1)
+{
+    if(pos == 1) return insertHead(head,val);
+    Node *temp = head;
+    int cnt = 0;
+    while(temp != NULL)
+    {
+        cnt++;
+        if(cnt == pos-1)
+        {
+            Node *newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
+
+//4. INSERTING AFTER GIVEN ELEMENT
+Node *insertAfterEle(Node* head, int ele, int val)----->T.C: O(N); S.C: O(1)
+{
+    Node *temp = head;
+    while(temp != NULL)
+    {
+        if(temp->data == ele)
+        {
+            Node *newNode = new Node(val);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}*/
+
+
