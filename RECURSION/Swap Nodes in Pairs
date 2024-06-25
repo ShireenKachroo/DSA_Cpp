@@ -1,0 +1,10 @@
+ListNode* swapPairs(ListNode* head){
+    //BASE CASE
+    if(head == NULL || head->next ==NULL)  return head;
+    ListNode* first = head;
+    ListNode* second = head->next;
+    //swap first and second
+    first->next = swapPairs(second->next);
+    second->next = first;
+    return second; //second is the updated head now
+}
