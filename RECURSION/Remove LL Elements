@@ -1,0 +1,36 @@
+/* ITERATIVE APPROACH 
+     ListNode* removeElements(ListNode* head, int key) {
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        ListNode* temp = dummy;
+        // Traverse the list and remove nodes with the given key
+        while (temp->next != nullptr) 
+        {
+            if (temp->next->val == key) 
+            {
+                ListNode* nodeToDelete = temp->next;
+                temp->next = temp->next->next;
+                delete nodeToDelete;
+            } 
+            else temp = temp->next;
+        }
+        ListNode* newHead = dummy->next;
+        delete dummy;
+        return newHead;
+    }*/
+
+/* RECURSIVE APPROACH */
+        ListNode* removeElements(ListNode* head, int key) 
+        {
+            // Base case
+            if (head == nullptr) return nullptr;
+            // Recursive call to process the rest of the list
+            head->next = removeElements(head->next, key);
+            if (head->val == key) 
+            {
+                ListNode* nextNode = head->next;
+                delete head;
+                return nextNode;
+            } 
+            else return head;
+    }
