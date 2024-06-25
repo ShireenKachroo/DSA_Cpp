@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+void findPowerSet(vector<int>&arr, vector<int>output,int index,vector<vector<int>>&ans)
+{
+    //base case
+    if(index >= arr.size()){
+        ans.push_back(output);
+        return;
+    }
+    //exclude
+    findPowerSet(arr,output,index+1,ans);
+    //include
+    int ele = arr[index];
+    output.push_back(ele);
+    findPowerSet(arr,output,index+1,ans);
+    return;
+}
+vector<vector<int>> returnSubsets(vector<int>&arr)
+{
+    vector<vector<int>>ans;
+    vector<int>output;
+    int index = 0;
+    findPowerSet(arr,output,index,ans);
+    return ans;
+}
+int main()
+{
+   vector<int>arr = {1,2,3};
+   vector<vector<int>>res = returnSubsets(arr);
+   //printing subsets
+   for (int i = 0; i < res.size(); i++) {
+        cout << "{ ";
+        for (int j = 0; j < res[i].size(); j++) {
+            cout << res[i][j] << " ";
+        }
+        cout << "}" <<" ";
+    }
+    return 0;
+}
