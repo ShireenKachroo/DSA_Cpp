@@ -1,20 +1,29 @@
-#include<iostream>
-using namespace std;
+double myPow(double n, int pow) {
+    // Base cases
+    if (pow == 0) return 1;
+    if (pow == 1) return n;
 
-long long int calcPower(int n, int power)
-{
-    if(power == 0) return 1;
-    if(power == 1) return n;
-    //recursive call
-    int ans = calcPower(n,power/2);
-    if(power % 2 == 0) return (ans*ans);  //if even power
-    return (n*ans*ans);    //if odd power
-}
+    // Handle negative power
+    if (pow < 0) 
+    {
+        n = 1 / n;
+        // Handle special case for INT_MIN
+        if (pow == INT_MIN)
+         {
+            pow = INT_MAX;
+            return n * myPow(n, pow);
+        } 
+        else 
+        {
+            pow = -pow; // Convert power to its positive equivalent
+        }
+    }
+    double ans = myPow(n, pow / 2);
 
-int main() {
-    int n,power;
-    cout<<"Enter a number and its power: ";
-    cin>>n>>power;
-    cout<< calcPower(n,power);
-    return 0;
+    // If power is even
+    if (pow % 2 == 0) {
+        return ans * ans;
+    }
+    // If power is odd
+    return ans * ans * n;
 }
