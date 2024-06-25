@@ -1,0 +1,30 @@
+void solve(string digits, string output, int index, vector<string>&ans,string mapping[])
+    {
+        //BASE CASE
+        if(index >= digits.length())
+        {
+            ans.push_back(output);
+            return;
+        }
+        //getting the number represnted by the string
+        int number = digits[index] - '0';
+        //getting corresponding value for the number from the mapping created;
+        string value = mapping[number];
+        //iterating through value string
+        for(int i=0;i <value.length(); i++)
+        {
+            output.push_back(value[i]);  //insert the ith value
+            solve(digits,output,index+1,ans,mapping); //move index to next number
+            output.pop_back(); //remove the inserted value to put next combination ossible
+        }
+        return;
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<string>ans;
+        if(digits.length() == 0) return ans;
+        string output;
+        int index = 0;
+        string mapping[10] = {" "," ","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        solve(digits,output,index,ans,mapping);
+        return ans;
+    }
