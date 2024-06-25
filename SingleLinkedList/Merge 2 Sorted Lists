@@ -1,0 +1,51 @@
+/* ITERATIVE APPROACH 
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* t1 = list1;
+        ListNode* t2 = list2;
+        ListNode*dummy = new ListNode(-1);
+        ListNode* curr = dummy;
+        while(t1 != NULL && t2 != NULL)
+        {
+            if(t1->val <= t2->val)
+            {
+                curr->next = t1;
+                curr = curr->next;
+                t1 = t1->next;
+            }
+            else if(t1->val > t2->val)
+            {
+                curr->next = t2;
+                curr = curr->next;
+                t2 = t2->next;
+            }
+        }
+        while(t1)
+        {
+            curr->next = t1;
+            curr = curr->next;
+            t1 = t1->next;
+        }
+        while(t2)
+        {
+            curr->next = t2;
+            curr = curr->next;
+            t2 = t2->next;
+        }
+            return dummy->next;
+    }*/
+
+/* RECURSIVE APPROACH*/
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        //BASE CASES
+        if(list1 == NULL) return list2;
+        if(list2 == NULL) return list1;
+        //RECURSIVE CALL
+        if (list1->val <= list2->val) {
+        list1->next = mergeTwoLists(list1->next, list2);
+        return list1;
+    } 
+    else {
+        list2->next = mergeTwoLists(list1, list2->next);
+        return list2;
+    }
+}
