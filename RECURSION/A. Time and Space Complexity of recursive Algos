@@ -1,0 +1,10 @@
+ALGO 1 : LINEAR SEARCH ----> T.C: O(N),  S.C:O(N)
+ALGO 2 : BINARY SEARCH ----> T.C: O(logN),  S.C: O(logN)
+ALGO 3 : SELECTION SORT ----> T.C: O(Ne2),  S.C: O(1)
+ALGO 4 : INSERTION SORT ----> T.C: O(Ne2),  S.C: O(N)
+ALGO 5 : BUBBLE SORT ----> T.C: O(Ne2),  S.C: O(N)
+ALGO 6 : QUICK SORT ----> T.C: O(NlogN),  S.C: O(N)
+ALGO 7 : MERGE SORT ----> T.C: O(NlogN),  S.C: O(N)
+
+ALGO 8 : FACTORIAL CALCULATION ----> T.C: O(N),  S.C: O(N)
+ALGO 9 : FIBONACCI SERIES ----> T.C: O(2eN),  S.C: O(N) 
