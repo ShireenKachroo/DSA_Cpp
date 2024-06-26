@@ -1,0 +1,21 @@
+string kthChildNthGeneration(int n, long long int k) {
+    // Base case
+    if (n == 1 && k == 1) return "Male";
+
+    // Determine the parent of the k-th child in the n-th generation
+    long long int parentIndex = (k + 1) / 2;
+    
+    // Recursively determine the gender of the parent
+    string parentGender = kthChildNthGeneration(n - 1, parentIndex);
+    
+    // Determine the gender of the k-th child based on the parent's gender
+    if (k % 2 == 1) {
+        // Odd-positioned child has the same gender as the parent
+        return parentGender;
+    } else {
+        // Even-positioned child has the opposite gender of the parent
+        return (parentGender == "Male") ? "Female" : "Male";
+    }
+}
+
+
