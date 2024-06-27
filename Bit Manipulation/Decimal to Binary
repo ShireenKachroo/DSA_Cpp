@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-//Decimal to binary Conversion
+//Decimal to binary Conversion-------------> T.C: O(log n ) and S.C: O(log n)
 string convertDtoB(int n)
 {
     if(n == 0 ) return "0";
