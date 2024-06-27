@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-//binary to decimal Conversion
+//binary to decimal Conversion----------->T.C: O(length of binary num i.e. string)  S.C: O(1)
 int convertBtoD(string n)
 {
     int number = 0;
