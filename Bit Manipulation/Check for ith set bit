@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std;
+//checking if the ith bit is set or not
+bool checkIthBit(int n, int i)
+{
+   if((n >> i) & 1) return true;
+   return false;
+}
+int main()
+{
+    if(checkIthBit(13,2)) cout<<"SET- BIT";
+    else cout<<"BIT IS 0";
+    return 0;
+}
