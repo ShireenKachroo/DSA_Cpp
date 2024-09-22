@@ -1,4 +1,4 @@
-//preorder traversal using 2 stacks
+//postorder traversal using 2 stacks
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int>ans;
         if(root == NULL) return ans;
