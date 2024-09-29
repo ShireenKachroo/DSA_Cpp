@@ -6,7 +6,7 @@ void printRightSideView(Node* root, int level, vector<int>&res){
     if(root == NULL) return;
     if(res.size() == level) res.push_back(root->val);
     printRightSideView(root->right,level+1,res);
-    printRightSideView(root->left,level-1,res);
+    printRightSideView(root->left,level+1,res);
     return;
 }
 
