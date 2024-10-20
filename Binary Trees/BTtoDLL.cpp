@@ -13,11 +13,11 @@ void BTtoLL(Node* root, Node*&head, Node*&tail){
     root->left = tail;
     tail->right = root;
   }
+  tail = root; //updating tail
   
   //creating DLL from right subtree
   BTtoLL(root->right,head,tail);
   
-  tail = root; //updating tail
 }
 
 //main function
